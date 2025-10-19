@@ -64,4 +64,28 @@ const excluirFuncionario = i => {
   renderTabela();
 };
 
+const relatorio = document.getElementById("relatorio");
+
+const salariosAltos = () => {
+  const altos = funcionarios.filter(f => f.salario > 5000);
+  relatorio.textContent = altos.map(f => f.toString()).join("\n") || "Nenhum";
+};
+
+const mediaSalarial = () => {
+  if (funcionarios.length === 0) return relatorio.textContent = "Sem funcionários";
+  const media = funcionarios.reduce((acc,f) => acc + f.salario,0) / funcionarios.length;
+  relatorio.textContent = `Média salarial: R$ ${media.toFixed(2)}`;
+};
+
+const cargosUnicos = () => {
+  const cargos = [...new Set(funcionarios.map(f => f.cargo))];
+  relatorio.textContent = "Cargos únicos:\n" + cargos.join("\n");
+};
+
+const nomesMaiusculos = () => {
+  const nomes = funcionarios.map(f => f.nome.toUpperCase());
+  relatorio.textContent = "Nomes maiúsculo:\n" + nomes.join("\n");
+};
+
+
 
