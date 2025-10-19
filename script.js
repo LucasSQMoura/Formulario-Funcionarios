@@ -33,7 +33,6 @@ form.addEventListener("submit", (e) => {
   renderTabela();
 });
 
-// Alteração do renderTabela
 const renderTabela = () => {
   tabela.innerHTML = "";
   funcionarios.forEach((f, i) => {
@@ -54,17 +53,15 @@ const renderTabela = () => {
   });
 };
 
-const editarFuncionario = (i) => {
+const editarFuncionario = i => {
   const f = funcionarios[i];
-  document.getElementById("nome").value = f.nome;
-  document.getElementById("idade").value = f.idade;
-  document.getElementById("cargo").value = f.cargo;
-  document.getElementById("salario").value = f.salario;
+  ["nome","idade","cargo","salario"].forEach(id => document.getElementById(id).value = f[id]);
   editIndex = i;
 };
 
-const excluirFuncionario = (i) => {
+const excluirFuncionario = i => {
   funcionarios.splice(i, 1);
   renderTabela();
 };
+
 
